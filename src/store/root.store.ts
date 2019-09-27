@@ -1,11 +1,13 @@
 import { TodoStore } from './todo.store'
-import { UIStore } from './ui.store'
+import { MainLayoutUIStore } from './main-layout-ui.store'
 import { runInAction } from 'mobx'
 import { Agent } from '../libs/agent'
+import { SaleLayoutUIStore } from './sale-layout-ui.store'
 
 export class RootStore {
   todoStore!: TodoStore
-  uiStore!: UIStore
+  mainLayoutUIStore!: MainLayoutUIStore
+  saleLayoutUIStore!: SaleLayoutUIStore
   agent!: Agent
 
   constructor() {
@@ -13,8 +15,11 @@ export class RootStore {
       this.agent = new Agent()
       this.agent.loadRootStore(this)
 
-      this.uiStore = new UIStore()
-      this.uiStore.loadRootStore(this)
+      this.mainLayoutUIStore = new MainLayoutUIStore()
+      this.mainLayoutUIStore.loadRootStore(this)
+
+      this.saleLayoutUIStore = new SaleLayoutUIStore()
+      this.saleLayoutUIStore.loadRootStore(this)
 
       this.todoStore = new TodoStore()
       this.todoStore.loadRootStore(this)

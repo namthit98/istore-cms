@@ -2,7 +2,7 @@ import { observable, action, runInAction } from 'mobx'
 import { RootStore } from './root.store'
 import { ClickParam } from 'antd/lib/menu'
 
-export class UIStore {
+export class MainLayoutUIStore {
   rootStore!: RootStore
   loadRootStore(rootStore: RootStore) {
     runInAction(() => {
@@ -11,7 +11,7 @@ export class UIStore {
   }
 
   @observable openKeys: string[] = ['sub1', 'sub2', 'sub3']
-  @observable selectedKeys: string = '0'
+  @observable selectedKeys: string = '1'
   @observable collapsed: boolean = false
 
   @action
@@ -21,8 +21,8 @@ export class UIStore {
 
   @action
   handleClick = (value: ClickParam) => {
-    if (value.key === '1') {
-      this.selectedKeys = '0'
+    if (value.key === '0') {
+      this.selectedKeys = '1'
       return
     }
 
@@ -36,4 +36,4 @@ export class UIStore {
   }
 }
 
-export default new UIStore()
+export default new MainLayoutUIStore()

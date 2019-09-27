@@ -1,22 +1,22 @@
 import React from 'react'
-import { Layout, Menu, Breadcrumb, Icon, Typography, Dropdown, Avatar, Badge } from 'antd'
+import { Layout, Menu, Icon, Typography, Dropdown, Avatar, Badge } from 'antd'
 import { Link } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
-import uiStore, { UIStore } from '../store/ui.store'
+import { MainLayoutUIStore } from '../store/main-layout-ui.store'
 
 const { Header, Content, Footer, Sider } = Layout
 const { SubMenu } = Menu
 const { Title } = Typography
 
 interface IProps {
-  uiStore?: UIStore
+  mainLayoutUIStore?: MainLayoutUIStore
   [key: string]: any
 }
 
 const withMainLayout = (Comp: any) => {
-  return inject('uiStore')(
+  return inject('mainLayoutUIStore')(
     observer((props: IProps) => {
-      if (!props.uiStore) return null
+      if (!props.mainLayoutUIStore) return null
 
       return (
         <Layout style={{ minHeight: '100vh' }}>
@@ -24,8 +24,8 @@ const withMainLayout = (Comp: any) => {
             width={250}
             theme="dark"
             collapsible
-            collapsed={props.uiStore!.collapsed}
-            onCollapse={value => props.uiStore!.handleCollapsed(value)}
+            collapsed={props.mainLayoutUIStore!.collapsed}
+            onCollapse={value => props.mainLayoutUIStore!.handleCollapsed(value)}
             style={{
               overflow: 'auto',
               height: '100vh',
@@ -42,7 +42,7 @@ const withMainLayout = (Comp: any) => {
               }}
             >
               <Title
-                level={props.uiStore!.collapsed ? 3 : 1}
+                level={props.mainLayoutUIStore!.collapsed ? 3 : 1}
                 type="warning"
                 style={{ marginBottom: 0 }}
               >
@@ -51,22 +51,22 @@ const withMainLayout = (Comp: any) => {
             </div>
             <Menu
               theme="dark"
-              openKeys={uiStore.openKeys}
-              onOpenChange={uiStore.handleOpenChange}
-              selectedKeys={[uiStore.selectedKeys]}
-              onClick={uiStore.handleClick}
+              openKeys={props.mainLayoutUIStore.openKeys}
+              onOpenChange={props.mainLayoutUIStore.handleOpenChange}
+              selectedKeys={[props.mainLayoutUIStore.selectedKeys]}
+              onClick={props.mainLayoutUIStore.handleClick}
               mode="inline"
             >
               <Menu.Item key="0">
-                <Link to="/">
-                  <Icon type="dashboard" />
-                  <span>Dashboard</span>
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="1">
                 <Link to="/sale">
                   <Icon type="printer" />
                   <span>Bán Hàng</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="1">
+                <Link to="/">
+                  <Icon type="dashboard" />
+                  <span>Dashboard</span>
                 </Link>
               </Menu.Item>
               <SubMenu
@@ -126,7 +126,7 @@ const withMainLayout = (Comp: any) => {
               </SubMenu>
             </Menu>
           </Sider>
-          <Layout style={{ marginLeft: props.uiStore!.collapsed ? 80 : 250 }}>
+          <Layout style={{ marginLeft: props.mainLayoutUIStore!.collapsed ? 80 : 250 }}>
             <Header
               style={{
                 display: 'flex',
