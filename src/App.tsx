@@ -13,6 +13,7 @@ import withSaleLayout from './layouts/SaleLayout'
 import uiStore from './store/ui.store'
 import history from './history'
 import Sale from './views/sale/Sale'
+import SaleEntry from './views/sale-entry/SaleEntry'
 
 configure({ enforceActions: 'always' })
 
@@ -26,6 +27,7 @@ const App: React.FC = () => {
           <Route path="/product" exact component={withMainLayout(Product)} />
           <Route path="/shop" exact component={withMainLayout(Shop)} />
           <Route path="/sale" exact component={withSaleLayout(Sale)} />
+          <Route path="/sale-entry" exact component={withSaleLayout(SaleEntry)} />
         </Switch>
       </Router>
     </Provider>

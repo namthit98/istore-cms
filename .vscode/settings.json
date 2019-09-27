@@ -5,6 +5,7 @@
   "editor.fontLigatures": true,
   "editor.tabSize": 2,
   "editor.fontSize": 14,
+  "editor.wordWrap": "on",
   "window.zoomLevel": 2,
   "files.autoSave": "off",
   "eslint.autoFixOnSave": true,

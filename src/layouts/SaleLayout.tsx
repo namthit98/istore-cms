@@ -38,9 +38,19 @@ const withSaleLayout = (Comp: any) => {
                   <span>Dashboard</span>
                 </Link>
               </Menu.Item>
-              <Menu.Item key="2">nav 2</Menu.Item>
+              <Menu.Item key="2">
+                <Link to="/sale">
+                  <Icon type="printer" />
+                  <span>Bán Hàng</span>
+                </Link>
+              </Menu.Item>
 
-              <Menu.Item key="3">nav 2</Menu.Item>
+              <Menu.Item key="3">
+                <Link to="/sale-entry">
+                  <Icon type="book" />
+                  <span>Đơn Hàng</span>
+                </Link>
+              </Menu.Item>
 
               <Menu.Item key="4">nav 2</Menu.Item>
 
