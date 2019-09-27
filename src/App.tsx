@@ -28,11 +28,11 @@ const App: React.FC = () => {
       <Router history={history}>
         <Switch>
           <Route path="/" exact component={withMainLayout(Dashboard)} />
-          <Route path="/order" exact component={withMainLayout(Order)} />
-          <Route path="/product" exact component={withMainLayout(Product)} />
-          <Route path="/shop" exact component={withMainLayout(Shop)} />
-          <Route path="/sale" exact component={withSaleLayout(Sale)} />
-          <Route path="/sale-entry" exact component={withSaleLayout(SaleEntry)} />
+          <Route path="/orders" exact component={withMainLayout(Order)} />
+          <Route path="/products" exact component={withMainLayout(Product)} />
+          <Route path="/shops" exact component={withMainLayout(Shop)} />
+          <Route path="/sales" exact component={withSaleLayout(Sale)} />
+          <Route path="/sale-entries" exact component={withSaleLayout(SaleEntry)} />
         </Switch>
       </Router>
     </Provider>

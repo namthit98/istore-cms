@@ -40,14 +40,14 @@ const withSaleLayout = (Comp: any) => {
                 </Link>
               </Menu.Item>
               <Menu.Item key="1">
-                <Link to="/sale">
+                <Link to="/sales">
                   <Icon type="printer" />
                   <span>Bán Hàng</span>
                 </Link>
               </Menu.Item>
 
               <Menu.Item key="2">
-                <Link to="/sale-entry">
+                <Link to="/sale-entries">
                   <Icon type="book" />
                   <span>Đơn Hàng</span>
                 </Link>

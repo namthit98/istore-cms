@@ -58,7 +58,7 @@ const withMainLayout = (Comp: any) => {
               mode="inline"
             >
               <Menu.Item key="0">
-                <Link to="/sale">
+                <Link to="/sales">
                   <Icon type="printer" />
                   <span>Bán Hàng</span>
                 </Link>
@@ -79,12 +79,12 @@ const withMainLayout = (Comp: any) => {
                 }
               >
                 <Menu.Item key="2">
-                  <Link to="/product">
+                  <Link to="/products">
                     <span>Tất cả sản phẩm</span>
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="3">
-                  <Link to="/product">
+                  <Link to="/products">
                     <span>Thêm sản phẩm</span>
                   </Link>
                 </Menu.Item>
@@ -99,7 +99,7 @@ const withMainLayout = (Comp: any) => {
                 }
               >
                 <Menu.Item key="4">
-                  <Link to="/order">
+                  <Link to="/orders">
                     <span>Tất cả đơn hàng</span>
                   </Link>
                 </Menu.Item>
@@ -114,12 +114,12 @@ const withMainLayout = (Comp: any) => {
                 }
               >
                 <Menu.Item key="5">
-                  <Link to="/shop">
+                  <Link to="/shops">
                     <span>Danh mục của cửa hàng</span>
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="6">
-                  <Link to="/shop">
+                  <Link to="/shops">
                     <span>Thiết lập cửa hàng</span>
                   </Link>
                 </Menu.Item>
