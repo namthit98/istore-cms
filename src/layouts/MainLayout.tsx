@@ -3,6 +3,7 @@ import { Layout, Menu, Icon, Typography, Dropdown, Avatar, Badge } from 'antd'
 import { Link } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 import { MainLayoutUIStore } from '../store/main-layout-ui.store'
+import styled from 'styled-components'
 
 const { Header, Content, Footer, Sider } = Layout
 const { SubMenu } = Menu
@@ -12,6 +13,19 @@ interface IProps {
   mainLayoutUIStore?: MainLayoutUIStore
   [key: string]: any
 }
+
+const StyledLogo = styled(Title)`
+  background: linear-gradient(
+    135deg,
+    rgba(73, 155, 234, 1) 15%,
+    rgba(65, 149, 233, 1) 30%,
+    rgba(43, 132, 230, 1) 69%,
+    rgba(32, 124, 229, 1) 88%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0 !important;
+`
 
 const withMainLayout = (Comp: any) => {
   return inject('mainLayoutUIStore')(
@@ -41,13 +55,7 @@ const withMainLayout = (Comp: any) => {
                 alignContent: 'center',
               }}
             >
-              <Title
-                level={props.mainLayoutUIStore!.collapsed ? 3 : 1}
-                type="warning"
-                style={{ marginBottom: 0 }}
-              >
-                iStore
-              </Title>
+              <StyledLogo level={props.mainLayoutUIStore!.collapsed ? 3 : 1}>iStore</StyledLogo>
             </div>
             <Menu
               theme="dark"

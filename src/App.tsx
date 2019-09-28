@@ -15,10 +15,13 @@ import Sale from './views/sale/Sale'
 import SaleEntry from './views/sale-entry/SaleEntry'
 import saleLayoutUIStore from './store/sale-layout-ui.store'
 import mainLayoutUIStore from './store/main-layout-ui.store'
+// import Auth from './views/Auth/Auth'
 
 configure({ enforceActions: 'always' })
 
 const App: React.FC = () => {
+  // return <Auth />
+
   return (
     <Provider
       rootStore={rootStore}
