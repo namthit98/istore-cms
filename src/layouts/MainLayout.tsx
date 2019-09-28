@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 import { MainLayoutUIStore } from '../store/main-layout-ui.store'
 import styled from 'styled-components'
+import { routes, IRoute } from '../config/Routes'
 
 const { Header, Content, Footer, Sider } = Layout
 const { SubMenu } = Menu
@@ -65,73 +66,42 @@ const withMainLayout = (Comp: any) => {
               onClick={props.mainLayoutUIStore.handleClick}
               mode="inline"
             >
-              <Menu.Item key="0">
-                <Link to="/sales">
-                  <Icon type="printer" />
-                  <span>Bán Hàng</span>
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="1">
-                <Link to="/">
-                  <Icon type="dashboard" />
-                  <span>Dashboard</span>
-                </Link>
-              </Menu.Item>
-              <SubMenu
-                key="sub1"
-                title={
-                  <span>
-                    <Icon type="shopping" />
-                    <span>Quản lý sản phẩm</span>
-                  </span>
-                }
-              >
-                <Menu.Item key="2">
-                  <Link to="/products">
-                    <span>Tất cả sản phẩm</span>
-                  </Link>
-                </Menu.Item>
-                <Menu.Item key="3">
-                  <Link to="/products">
-                    <span>Thêm sản phẩm</span>
-                  </Link>
-                </Menu.Item>
-              </SubMenu>
-              <SubMenu
-                key="sub2"
-                title={
-                  <span>
-                    <Icon type="book" />
-                    <span>Quản lý đơn hàng</span>
-                  </span>
-                }
-              >
-                <Menu.Item key="4">
-                  <Link to="/orders">
-                    <span>Tất cả đơn hàng</span>
-                  </Link>
-                </Menu.Item>
-              </SubMenu>
-              <SubMenu
-                key="sub3"
-                title={
-                  <span>
-                    <Icon type="shop" />
-                    <span>Quản lý Cửa Hàng</span>
-                  </span>
-                }
-              >
-                <Menu.Item key="5">
-                  <Link to="/shops">
-                    <span>Danh mục của cửa hàng</span>
-                  </Link>
-                </Menu.Item>
-                <Menu.Item key="6">
-                  <Link to="/shops">
-                    <span>Thiết lập cửa hàng</span>
-                  </Link>
-                </Menu.Item>
-              </SubMenu>
+              {routes
+                .filter((route: IRoute) => ['main', 'main-sale'].includes(route.layout))
+                .map((route: IRoute) => {
+                  if (!route.subRoute) {
+                    return (
+                      <Menu.Item key={route.id}>
+                        <Link to={route.path!}>
+                          <Icon type={route.icon!} />
+                          <span>{route.text}</span>
+                        </Link>
+                      </Menu.Item>
+                    )
+                  }
+
+                  return (
+                    <SubMenu
+                      key={route.id}
+                      title={
+                        <span>
+                          <Icon type={route.icon!} />
+                          <span>{route.text}</span>
+                        </span>
+                      }
+                    >
+                      {route.subRoute.map((subRoute: IRoute) => {
+                        return (
+                          <Menu.Item key={subRoute.id}>
+                            <Link to={subRoute.path!}>
+                              <span>{subRoute.text}</span>
+                            </Link>
+                          </Menu.Item>
+                        )
+                      })}
+                    </SubMenu>
+                  )
+                })}
             </Menu>
           </Sider>
           <Layout style={{ marginLeft: props.mainLayoutUIStore!.collapsed ? 80 : 250 }}>
@@ -197,7 +167,7 @@ const withMainLayout = (Comp: any) => {
                 <Breadcrumb.Item>User</Breadcrumb.Item>
                 <Breadcrumb.Item>Bill</Breadcrumb.Item>
               </Breadcrumb> */}
-              <div style={{ padding: 24, background: '#fff', height: '100%', overflowY: 'auto' }}>
+              <div style={{ padding: 24, height: '100%', overflowY: 'auto' }}>
                 <Comp {...props} />
               </div>
             </Content>
