@@ -9,7 +9,7 @@ import Shop from '../views/shop/Shop'
 import SaleEntry from '../views/sale-entry/SaleEntry'
 import { Switch, Route } from 'react-router-dom'
 import Staff from '../views/staff/Staff'
-
+import { has } from 'lodash'
 export interface IRoute {
   id: number | string
   icon?: string
@@ -159,6 +159,33 @@ export const routes: IRoute[] = [
     layout: 'sale',
   },
 ]
+
+export const routeToTitleMap = routes.reduce(
+  (result: { [key: string]: { text: string; id: number | string } }, current: IRoute) => {
+    if (!current.subRoute && current.path && !has(result, current.path)) {
+      result[current.path] = {
+        text: current.text || '',
+        id: current.id || 0,
+      }
+      return result
+    }
+
+    if (current.subRoute) {
+      current.subRoute.forEach((subRoute: IRoute) => {
+        if (subRoute.path && !has(result, subRoute.path)) {
+          result[subRoute.path] = {
+            text: subRoute.text || '',
+            id: subRoute.id || 0,
+          }
+          return result
+        }
+      })
+    }
+
+    return result
+  },
+  {},
+)
 
 const ListRoute: React.FC = () => {
   return (

@@ -31,6 +31,11 @@ export class MainLayoutUIStore {
   }
 
   @action
+  setSelectedKeys(key: string) {
+    this.selectedKeys = key
+  }
+
+  @action
   handleCollapsed = (value: boolean) => {
     this.openKeys = value ? [] : openKeysDefault
     this.collapsed = value
