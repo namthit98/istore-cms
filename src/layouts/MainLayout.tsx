@@ -37,7 +37,7 @@ const withMainLayout = (Comp: any) => {
         props.mainLayoutUIStore!.setSelectedKeys(
           routeToTitleMap[props.location.pathname].id.toString(),
         )
-      }, [props.history.pathname])
+      }, [props.location.pathname, props.mainLayoutUIStore])
 
       return (
         <>
@@ -179,10 +179,6 @@ const withMainLayout = (Comp: any) => {
                 </Dropdown>
               </Header>
               <Content style={{ margin: '16px 0 0 0', minHeight: 'calc(100vh - 20%)' }}>
-                {/* <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item>User</Breadcrumb.Item>
-                <Breadcrumb.Item>Bill</Breadcrumb.Item>
-              </Breadcrumb> */}
                 <div style={{ height: '100%', overflowY: 'auto' }}>
                   <Comp {...props} />
                 </div>

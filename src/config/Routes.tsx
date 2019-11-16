@@ -9,6 +9,7 @@ import Shop from '../views/shop/Shop'
 import SaleEntry from '../views/sale-entry/SaleEntry'
 import { Switch, Route } from 'react-router-dom'
 import Staff from '../views/staff/Staff'
+import CreateStaff from '../views/staff/CreateStaff'
 import { has } from 'lodash'
 export interface IRoute {
   id: number | string
@@ -67,7 +68,7 @@ export const routes: IRoute[] = [
         text: 'Thêm nhân viên',
         path: '/staffs/create',
         exact: true,
-        main: withMainLayout(Staff),
+        main: withMainLayout(CreateStaff),
         visibleOnMenu: true,
         layout: 'main',
       },

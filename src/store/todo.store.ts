@@ -2,7 +2,7 @@ import { observable, action, runInAction, set } from 'mobx'
 import { RootStore } from './root.store'
 
 export interface ITodo {
-  id?: number
+  _id?: number
   title: string
 }
 
@@ -45,10 +45,11 @@ export class TodoStore {
     this.todos[index] = todo
   }
 
-  async fetchTodods(callback: Function | null = null) {
+  async fetchTodos(callback: Function | null = null) {
     try {
       this.setLoading(true)
       const todos: ITodo[] = await this.rootStore!.agent.get<ITodo[]>('/todos')
+      console.log(todos)
       this.setTodos(todos.reverse())
       if (callback) callback()
     } catch (error) {
@@ -74,8 +75,8 @@ export class TodoStore {
   async deleteTodo(todo: ITodo, callback: Function | null = null) {
     try {
       this.setLoading(true)
-      const response: ITodo = await this.rootStore!.agent.delete<ITodo>(`/todos/${todo.id}`)
-      this.setTodos(this.todos.filter((element: any) => element.id !== response.id))
+      const response: ITodo = await this.rootStore!.agent.delete<ITodo>(`/todos/${todo._id}`)
+      this.setTodos(this.todos.filter((element: any) => element.id !== response._id))
       if (callback) callback()
     } catch (eror) {
       console.log('lỗi rồi nhé!')
@@ -87,7 +88,7 @@ export class TodoStore {
   async fetchTodo(todo: ITodo, callback: Function | null = null) {
     try {
       this.setLoading(true)
-      const response: ITodo = await this.rootStore!.agent.get<ITodo>(`/todos/${todo.id}`)
+      const response: ITodo = await this.rootStore!.agent.get<ITodo>(`/todos/${todo._id}`)
       this.setTodo(response)
       if (callback) callback()
     } catch (error) {
@@ -103,10 +104,10 @@ export class TodoStore {
       this.setLoading(true)
 
       const response: ITodo = await this.rootStore!.agent.put<ITodo>(
-        `/todos/${this.todo.id}`,
+        `/todos/${this.todo._id}`,
         this.todo,
       )
-      const index = this.todos.findIndex((todo: any) => todo.id === this.todo!.id)
+      const index = this.todos.findIndex((todo: any) => todo.id === this.todo!._id)
 
       this.updateTodoByIndex(response, index)
       this.setTodo(null)
